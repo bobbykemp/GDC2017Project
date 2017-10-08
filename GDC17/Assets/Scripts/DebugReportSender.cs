@@ -11,36 +11,46 @@ using UnityEngine;
  * Last Edited By: Charlie Shin
  * Last Edited On: 2017 Oct 08
  * 
- * To send debug text to UI, add this component to game object, then within any script, grab this script and
- * use handler to send debug lines to handler.
+ * To send debug text to GUI, add this component to game object, then within any script, grab this script and
+ * use wrapper functions to send debug lines to handler.
  * 
  */
  [AddComponentMenu("GDC/Scripts/Debug Report Sender.cs")]
 public class DebugReportSender : MonoBehaviour
 {
-    /* Public Variables */
-    public bool sendToDebugWindow = false; /* Should be enabled in editor level so they can send debug info to debug gui */
-
     /* Private Variables */
     private DebugReportHandler handler;
 
+    /* Script links Debug Report Handler. Any game object with Debug Report Sender can use wrapper function
+     * to send message to debug GUI
+     */
     private void Awake()
     {
         handler = GameObject.Find("debug_text").GetComponent<DebugReportHandler>();
     }
 
-    private void FixedUpdate()
+    /* Wrapper functions */
+    /* Appends Log tag */
+    public void SendLog(string line)
     {
-        handler.SendLog("Fixed Update Called");
+        handler.SendLog(line);
     }
 
-    private void Update()
+    /* Appends Warning tag */
+    public void SendWarning(string line)
     {
-        handler.SendLog("Update Called");
+        handler.SendWarning(line);
     }
 
-    private void LateUpdate()
+    /* Appends Error tag */
+    public void SendError(string line)
     {
-        handler.SendLog("Late Update Called");
+        handler.SendError(line);
+    }
+
+    /* Sends message to debug GUI without any tag */
+    public void Send(string line, bool append = false)
+    {
+        handler.Send(line, append);
     }
 }
