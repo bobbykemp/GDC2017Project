@@ -14,3 +14,4 @@
    */
   ```
 * Change made by other than original creator must include their initial in the comment line.
+* It is strongly encouraged to create [AddComponentMenu("GDC/Scripts/Script_Name.cs")] for each script for each searching.
