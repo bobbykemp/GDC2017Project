@@ -11,6 +11,9 @@ using UnityEngine;
  * Last Edited By: Charlie Shin
  * Last Edited On: 2017 Oct 08
  * 
+ * To send debug text to UI, add this component to game object, then within any script, grab this script and
+ * use handler to send debug lines to handler.
+ * 
  */
  [AddComponentMenu("GDC/Scripts/Debug Report Sender.cs")]
 public class DebugReportSender : MonoBehaviour
@@ -19,11 +22,11 @@ public class DebugReportSender : MonoBehaviour
     public bool sendToDebugWindow = false; /* Should be enabled in editor level so they can send debug info to debug gui */
 
     /* Private Variables */
-    private DebugTextHandler handler;
+    private DebugReportHandler handler;
 
     private void Awake()
     {
-        handler = GameObject.Find("debug_text").GetComponent<DebugTextHandler>();
+        handler = GameObject.Find("debug_text").GetComponent<DebugReportHandler>();
     }
 
     private void FixedUpdate()

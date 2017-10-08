@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /*
- * DebugTextHandler.cs
+ * DebugReportHandler.cs
  * 
  * Created By: Charlie Shin
  * Created On: 2017 Oct 07
@@ -13,17 +13,24 @@ using UnityEngine.UI;
  * Last Edited On: 2017 Oct 08
  * 
  */
-[AddComponentMenu("GDC/Scripts/Debug Text Handler.cs")]
-public class DebugTextHandler : MonoBehaviour
+[AddComponentMenu("GDC/Scripts/Debug Report Handler.cs")]
+public class DebugReportHandler : MonoBehaviour
 {
     /* Public variables */
-    public bool displayToScreen = false; /* Use to turn on/off debug text at gui level */
+    public bool reportToUI = false; /* Use to turn on/off debug text at gui level */
+    [Range(100, 300)]
+    public int maxLineNumber = 100; /* UI Text has text limit; need to truncate debug output. */
 
     /* Private */
     private Text debugWindow;
+    private string[] lines;
+    private int lineCount = 0;
 
     private void Awake()
     {
+        lines = new string[maxLineNumber];
+        lines[lineCount] = "Test String";
+
         debugWindow = this.gameObject.GetComponent<Text>();
         debugWindow.text = ""; /* Clear text field */
     }
@@ -61,11 +68,36 @@ public class DebugTextHandler : MonoBehaviour
         if (!append)
             AppendText(line + "\n");
         else AppendText(line);
+
+        if(reportToUI)
+            UpdateUI();
     }
 
+    /* Hidden functions
+     */
     private void AppendText(string line)
     {
-        if(displayToScreen)
+        if(lineCount > maxLineNumber - 1)
+        {
+            for (int i = 1; i < maxLineNumber; i++)
+                lines[i - 1] = lines[i];
+
+            lineCount = maxLineNumber - 1;
+        }
+        else
+        {
+            lines[lineCount] = line;
+            lineCount++;
+        }
+    }
+
+    private void UpdateUI()
+    {
+        debugWindow.text = "";
+
+        foreach(string line in lines)
+        {
             debugWindow.text += line;
+        }
     }
 }
