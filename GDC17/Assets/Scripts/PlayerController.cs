@@ -1,5 +1,5 @@
 ﻿/*
- * Name_Of_Script.cs
+ * PlayerController.cs
  * 
  * Created By: Joseph Brewster
  * Created On: 2017 Oct 13
