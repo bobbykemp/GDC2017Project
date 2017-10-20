@@ -36,29 +36,33 @@ public class PlayerMovementController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
 
-        Vector2 vel = Vector2.right * velocity * horizontal;
-        vel.y += body.velocity.y;
+        Vector2 vel = Vector2.right * velocity * horizontal; /* (1, 0) * velocity * +/-1 */
+        vel.y += body.velocity.y; /* Let gravity handle the vertical speed */
+
+        /* If input is negative and player is facing right, flip the sprite */
         if (horizontal < 0 && isFacingRight)
         {
             Flip();
         }
+        /* If input is positive and player is facing left, flip the sprite */
         else if (horizontal > 0 && !isFacingRight)
         {
             Flip();
         }
 
-        body.velocity = vel;
+        body.velocity = vel; /* Set velocity of player */
     }
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
-        Vector3 scale = this.transform.localScale;
+        isFacingRight = !isFacingRight; /* Invert boolean */
+        Vector3 scale = this.transform.localScale; /* Grab local scale vector */
 
-        scale.x *= -1;
-        this.transform.localScale = scale;
+        scale.x *= -1; /* Flip x scale to invert player position */
+        this.transform.localScale = scale; /* Apply scale */
     }
 
+    /* Since we are using velocity to control plyaer, we do our input update in FixedUpdate() */
     private void FixedUpdate()
     {
         UpdateHorizontal();
