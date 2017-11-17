@@ -2,7 +2,7 @@
 
 Be sure to add commneted header to each scripts you create!
 
-You can copy the template for commented header here;
+You can copy the template for commented header from here;
 
 ```
 /*
