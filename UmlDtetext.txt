@@ -1,0 +1,68 @@
+Character
+	-Health           +move() Force
+	-Armor			  +jump() Force
+	-MoveSpeed		  +Damage() 
+	-Chartype		  +Attack()
+	-Charname		  +Kill()
+	-Sprite 			
+	-Status Effect[] (Affected)	
+	-Spawn Location		
+	-Jump Force
+	+isAttackable
+	-StatusResist[]
+	
+NPC: Character
+	-Followdist			+OnTrigger2DStay()
+	-AudioSource		+Follow(Transform Target)
+	-AudioClip[]
+	
+	
+Enemy: Character
+	-DamageVal			+Follow(Transform Target)
+	-DetectionRange		+OnTriggerStay2D
+	-Attack Range	
+	-IsRanged
+	-IsTriggered
+	
+Player: Character
+	-HasDoubleJumped	 +DoubleJump()
+	-inAir				 +SwapWeapon(int)
+	-Item[]				 +TakeCover()
+	-CurrentWeapon(Item) +LeaveCover()
+	-IsCovered			 +OnTriggerEnter2D()
+	-CoverValue			 +Damage() override
+						 +Attack() override
+
+Consumable: Item
+	-HealthVal		+Apply()
+	-StatusEffect(int)
+	-ScrapValue
+	-Sprite
+	
+Armour: Equipment
+	-ArmorVal(0~1)
+	-ArmorHealth
+
+Melee: Weapon
+
+	
+Ranged: Weapon
+	-FireRate
+	-AmmoCount	
+	-AmmoType
+	
+Weapon: Equipment
+	-AtkRng
+	-AtkVal
+		
+Equipment: Item
+	
+
+Item:
+
+	-Name
+	-Desc
+	-Sprite
+	-ScrapVal
+	-StatusEffect(int)
+	
