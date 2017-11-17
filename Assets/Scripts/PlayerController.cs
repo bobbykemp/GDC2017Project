@@ -1,87 +1,42 @@
-﻿/*
+﻿using UnityEngine;
+using System.Collections;
+
+/*
  * PlayerController.cs
  * 
- * Created By: Joseph Brewster
- * Created On: 2017 Oct 13
- * Last Edited By: Joseph Brewster
- * Last Edited On: 2017 Nov 16
+ * Created By: Bobby Kemp
+ * Created On: 2017 Nov 17
+ * Last Edited By: Bobby Kemp
+ * Last Edited On: 2017 Nov 17
  * 
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[AddComponentMenu("GDC/Scripts/PlayerController.cs")]
 public class PlayerController : MonoBehaviour {
-    [Range(5.0f, 10.0f)]
-    public float forceMove = 1.0f;
-    public bool facingRight = true;
-    [Range (50f, 200f)]
-    public float jumpForce = 100.0f;
-    bool inAir = false;
-    bool jumped = false;
 
-    private Rigidbody2D body;
+	public float speed;             //Floating point variable to store the player's movement speed.
 
-    Animator anim;
+	private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
 
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+	// Use this for initialization
+	void Start()
+	{
+		//Get and store a reference to the Rigidbody2D component so that we can access it.
+		rb2d = GetComponent<Rigidbody2D> ();
+	}
 
-    private void Awake()
-    {
-        body = this.GetComponent<Rigidbody2D>();
-    }
+	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
+	void FixedUpdate()
+	{
+		//Store the current horizontal input in the float moveHorizontal.
+		float moveHorizontal = Input.GetAxis ("Horizontal");
 
-    
-    private void FixedUpdate()
-    {
-        float force_horizontal = Input.GetAxis("Horizontal");
-        float force_vertical = Input.GetAxis("Vertical");
+		//Store the current vertical input in the float moveVertical.
+		float moveVertical = Input.GetAxis ("Vertical");
 
-        anim.SetFloat("Speed", Mathf.Abs(force_horizontal));
+		//Use the two store floats to create a new Vector2 variable movement.
+		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 
-        if (force_horizontal > 0 && !facingRight)
-            Flip();
-        else if (force_horizontal < 0 && facingRight)
-            Flip();
-        
-        Vector2 force = new Vector3(force_horizontal * forceMove,  force_vertical * forceMove);
-
-        body.AddForce(force);
-
-        if (Input.GetKeyDown(KeyCode.Space) && !jumped)
-        {
-            body.AddForce(Vector3.up* jumpForce);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-      
-        if (collision.collider.gameObject.tag.Equals("Ground"))
-            if (jumped)
-                jumped = false;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        
-        if (collision.collider.gameObject.tag.Equals("Ground"))
-            if (!jumped)
-                jumped = true;
-    }
-    
-
-    private void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-
-    }
+		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+		rb2d.AddForce (movement * speed);
+	}
 }
