@@ -11,7 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Camera/CameraBehavior.cs")]
+[AddComponentMenu("GDC/Scripts/CameraBehavior.cs")]
 public class CameraBehavior : MonoBehaviour {
 
     public GameObject player;
