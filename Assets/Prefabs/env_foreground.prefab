@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4336746950180772}
   - component: {fileID: 212215507155846026}
   - component: {fileID: 61135684305570426}
+  - component: {fileID: 114476224134314808}
   m_Layer: 8
   m_Name: Ground_1
   m_TagString: Ground
@@ -184,6 +185,7 @@ GameObject:
   - component: {fileID: 4909579601206372}
   - component: {fileID: 212426790944383806}
   - component: {fileID: 61885976530801870}
+  - component: {fileID: 114763023305041330}
   m_Layer: 8
   m_Name: Ground_2
   m_TagString: Ground
@@ -235,6 +237,7 @@ GameObject:
   - component: {fileID: 4142019661423202}
   - component: {fileID: 212518894926210242}
   - component: {fileID: 61047575220676412}
+  - component: {fileID: 114399933803688078}
   m_Layer: 8
   m_Name: Ground_3
   m_TagString: Ground
@@ -887,6 +890,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142b4bcaffb9a9c4898205ca94ffc67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114399933803688078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815309021493758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc466ea1c362e640b45a354401588f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPosition: {x: 0.697, y: 0}
+  isDestructible: 0
+  surfaceCondition: 0
+--- !u!114 &114476224134314808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063235506879042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc466ea1c362e640b45a354401588f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPosition: {x: 0, y: 0}
+  isDestructible: 0
+  surfaceCondition: 0
+--- !u!114 &114763023305041330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551683097518452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc466ea1c362e640b45a354401588f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPosition: {x: -0.701, y: 0}
+  isDestructible: 0
+  surfaceCondition: 0
 --- !u!212 &212101535049638750
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17,6 +17,7 @@ public class NPCharacter : Character
 {
     /* Public Variables */
     public float followDistance = 1; // How close will our NPC follow player?
+    public bool isTriggered = false;
 
     /* Getter and Setter */
     public float FollowDist
@@ -39,13 +40,24 @@ public class NPCharacter : Character
 
     public virtual void FixedUpdate()
     {
-        Move(); // MOOOOOOOVE
+        if(isTriggered) // Move only if we are triggered
+            Move();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player")) // Is it player?
+        {
+            if(!isTriggered)
+                isTriggered = true;
             Follow(collision.transform); // Follow player
+        }
+    }
+
+    public virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player")) // Is it player?
+            isTriggered = false;
     }
 
     /* Functions */

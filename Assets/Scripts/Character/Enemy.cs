@@ -17,8 +17,7 @@ public class Enemy : NPCharacter
 {
     /* Public Variables */
     public bool isRanged = false;
-    public bool isTriggered = false;
-
+    
     /* Private Variables */
     private float rng_detection = 1; // How far can emeny detect something?
     private float rng_atk = 1; // How far can enemy attack? (Override value from weapon however)
@@ -69,23 +68,7 @@ public class Enemy : NPCharacter
         base.FixedUpdate();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("Player")) // Is it player?
-        {
-            isTriggered = true; // Set trigger flag to true
-            Follow(collision.transform); // Follow player
-        }
-        else isTriggered = false; // Otherwise change to false
-    }
-
     /* Functions */
-    public override void Follow(Transform target)
-    {
-        if(isTriggered) // Is enemy triggered?
-            base.Follow(target); // Refer to NPCharacter.Follow()
-    }
-
     public override void Attack(Character target)
     {
         // Attack only if target is not enemy
