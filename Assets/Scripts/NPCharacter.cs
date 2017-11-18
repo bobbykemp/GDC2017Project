@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 10
+ * Last Edited On: 2017 Nov 17
  * 
  */
 
@@ -34,18 +34,33 @@ public class NPCharacter : Character
 
     public virtual void Update()
     {
+        // Non-movement functions only please
+    }
+
+    public virtual void FixedUpdate()
+    {
         Move(); // MOOOOOOOVE
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player")) // Is it player?
+            Follow(collision.transform); // Follow player
     }
 
     /* Functions */
     public virtual void Follow(Transform target) // Its virtual. If Enemy class have more complex function, override it.
     {
-        Vector2 dist = transform.position - target.position; // How far am I?
+        Vector2 dist = target.position - transform.position; // How far am I?
 
         if (dist.magnitude > FollowDist) // Am I too far from target?
         {
-            int dir = dist.magnitude > 0 ? 1 : -1; // Set direction
+            int dir = dist.x > 0 ? 1 : -1; // Set direction
             H_CurrSpeed = dir * H_Speed; // Add speed towards target!
+        }
+        else // I'm close enough with target
+        {
+            H_CurrSpeed = 0; // Set speed to 0
         }
     }
 

@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 10
+ * Last Edited On: 2017 Nov 17
  * 
  */
 
@@ -62,6 +62,21 @@ public class Enemy : NPCharacter
     public override void Update()
     {
         base.Update();
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player")) // Is it player?
+        {
+            isTriggered = true; // Set trigger flag to true
+            Follow(collision.transform); // Follow player
+        }
+        else isTriggered = false; // Otherwise change to false
     }
 
     /* Functions */
