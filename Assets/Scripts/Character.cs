@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 10
+ * Last Edited On: 2017 Nov 17
  * 
  */
 
@@ -19,7 +19,8 @@ public class Character : MonoBehaviour
 
     public GameObject gameobject; // Character's game object info
 
-    public Animation anim; // Character's animation info
+    public Animation char_animation; // Character's animation info
+    public Animator char_animator; // Character's animator info
 
     public Rigidbody2D body; // To apply movements
 
@@ -119,6 +120,15 @@ public class Character : MonoBehaviour
     /* Unity Functions */
     public virtual void Awake() // Note that it is protected. We only want to override our Awake call from inherited classes
     {
+        // All characters should have rigidbody component.
+        body = this.GetComponent<Rigidbody2D>();
+        if (body == null) // If body happens to be a null, add rigidbody component to this character
+        {
+            gameObject.AddComponent<Rigidbody2D>();
+            body = GetComponent<Rigidbody2D>();
+        }
+        char_animator = this.GetComponent<Animator>();
+
         audiosource = GetComponent<AudioSource>(); // Whatever game object that has Character class, it SHOULD have AudioSource to play clips.
         if(audiosource == null) // But if we forgot to put AudioSource to our GO, then we will add one
         {
@@ -148,7 +158,7 @@ public class Character : MonoBehaviour
         // Play death animation (Not shown)
         audiosource.clip = soundclips[(int)DefaultCharSound.DEATH]; // Also play sound if applicable
 
-        if(!anim.isPlaying) // If death animation stops playing, destory object
+        if(!char_animation.isPlaying) // If death animation stops playing, destory object
             Destroy(gameobject);
     }
 

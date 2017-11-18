@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 11
+ * Last Edited On: 2017 Nov 17
  * 
  */
 
@@ -19,6 +19,9 @@ public class Player : Character
     private bool hasJumped; // For double jumping
     private Item[] items; // For item slots
     private int curr_holding = 0; // Currently holding item
+
+    private bool facingRight = true; // For these three variables, unless you are debugging, keep them as private
+    private bool jumped = false;
 
     /* Getter and Setter */
     public bool DoubleJumped
@@ -43,10 +46,32 @@ public class Player : Character
     public void Update()
     {
         // If player is taking cover, leave cover first
-        Move(); // Move check
-        DoubleJump(); // Jump check
         // If cover is near, take cover
         // If slot number is changed, change item
+    }
+
+    public void FixedUpdate()
+    {
+        Move(); // Is player moving?
+        DoubleJump(); // Is player jumping?
+
+        // Update animation
+        char_animator.SetBool("InAir", InAir);
+        char_animator.SetFloat("Speed", Mathf.Abs(body.velocity.x));
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag.Equals("Ground"))
+            if (InAir)
+                InAir = false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.tag.Equals("Ground"))
+            if (!InAir)
+                InAir = true;
     }
 
     /* Functions */
@@ -56,6 +81,11 @@ public class Player : Character
         // If player is grounded, jump once
         // If player is not grounded and hasn't double jumped, jump once
         // Change double jump flag to true
+
+        if (Input.GetKeyDown(KeyCode.Space) && !jumped)
+        {
+            body.AddForce(Vector3.up * V_Speed);
+        }
     }
 
     public void TakeCover()
@@ -94,8 +124,29 @@ public class Player : Character
 
     public override void Move()
     {
-        // Check keyboard input
-        base.Move();
+        float input_horizontal = Input.GetAxisRaw("Horizontal");
+        float input_vertical = Input.GetAxisRaw("Vertical");
+
+        if (input_horizontal > 0 && !facingRight)
+            Flip();
+        else if (input_horizontal < 0 && facingRight)
+            Flip();
+
+        if (input_horizontal == 0)
+            input_horizontal = 0;
+
+        Vector2 curr_velocity = body.velocity;
+        Vector2 new_velocity = new Vector2(input_horizontal * H_Speed, curr_velocity.y);
+
+        body.velocity = new_velocity;
     }
 
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1;
+        transform.localScale = newScale;
+
+    }
 }
