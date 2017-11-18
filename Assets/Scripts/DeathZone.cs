@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+* DeathZone.cs
+* 
+* Created By: Salvatore Calderone
+* Created On: 2017 Nov 17
+* Last Edited By: Charlie Shin
+* Last Edited On: 2017 Nov 17
+* 
+*/
+
 [AddComponentMenu("GDC/World/Hazards")]
-public class DeathZone : MonoBehaviour {
-
-    /*
- * Character.cs
- * 
- * Created By: Salvatore Calderone
- * Created On: 2017 Nov 17
- * Last Edited By: Salvatore Calderone
- * Last Edited On: 2017 Nov 17
- * 
- */
-
+public class DeathZone : MonoBehaviour
+{
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "NPC" || other.gameObject.tag == "Enemy")
