@@ -142,10 +142,10 @@ MonoBehaviour:
   health: 1
   horizontalSpeed: 1
   verticalSpeed: 1
-  charName: Character
+  charName: Test_Enemy
   followDistance: 1
-  isRanged: 0
   isTriggered: 0
+  isRanged: 0
 --- !u!212 &212695520577063422
 SpriteRenderer:
   m_ObjectHideFlags: 1

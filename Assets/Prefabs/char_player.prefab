@@ -116,7 +116,7 @@ MonoBehaviour:
   health: 1
   horizontalSpeed: 2
   verticalSpeed: 250
-  charName: Character
+  charName: Test_Player
 --- !u!212 &212822743823201176
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 17
+ * Last Edited On: 2017 Nov 23
  * 
  */
 
@@ -20,8 +20,7 @@ public class Player : Character
     private Item[] items; // For item slots
     private int curr_holding = 0; // Currently holding item
 
-    private bool facingRight = true; // For these three variables, unless you are debugging, keep them as private
-    private bool jumped = false;
+    private bool facingRight = true;
 
     /* Getter and Setter */
     public bool DoubleJumped
@@ -60,14 +59,16 @@ public class Player : Character
         char_animator.SetFloat("Speed", Mathf.Abs(body.velocity.x));
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public override void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.gameObject.tag.Equals("Ground"))
-            if (InAir)
-                InAir = false;
+        {
+            InAir = false;
+            DoubleJumped = false;
+        }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public override void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.gameObject.tag.Equals("Ground"))
             if (!InAir)
@@ -81,10 +82,17 @@ public class Player : Character
         // If player is grounded, jump once
         // If player is not grounded and hasn't double jumped, jump once
         // Change double jump flag to true
-
-        if (Input.GetKeyDown(KeyCode.Space) && !jumped)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            body.AddForce(Vector3.up * V_Speed);
+            if(!InAir)
+            {
+                body.AddForce(Vector2.up * V_Speed);
+            }
+            else if(InAir && !DoubleJumped)
+            {
+                body.AddForce(Vector2.up * V_Speed);
+                DoubleJumped = true;
+            }
         }
     }
 

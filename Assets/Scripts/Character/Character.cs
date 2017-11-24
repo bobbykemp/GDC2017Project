@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 17
+ * Last Edited On: 2017 Nov 23
  * 
  */
 
@@ -136,6 +136,13 @@ public class Character : MonoBehaviour
             audiosource = GetComponent<AudioSource>();
         }
     }
+
+    public virtual void OnCollisionEnter2D(Collision2D collision) { }
+    public virtual void OnCollisionStay2D(Collision2D collision) { }
+    public virtual void OnCollisionExit2D(Collision2D collision) { }
+    public virtual void OnTriggerEnter2D(Collider2D collision) { }
+    public virtual void OnTriggerStay2D(Collider2D collision) { }
+    public virtual void OnTriggerExit2D(Collider2D collision) { }
 
     /* Functions */
     public bool HasResistStatus(Status target) { return status_resist.Contains(target); } // If list contains enum value, it will return true, otherwise returns false

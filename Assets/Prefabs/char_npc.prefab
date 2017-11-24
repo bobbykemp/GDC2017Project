@@ -114,8 +114,9 @@ MonoBehaviour:
   health: 1
   horizontalSpeed: 1
   verticalSpeed: 1
-  charName: Character
+  charName: Test_NPC
   followDistance: 1
+  isTriggered: 0
 --- !u!212 &212257468950817822
 SpriteRenderer:
   m_ObjectHideFlags: 1
