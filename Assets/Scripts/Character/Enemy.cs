@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 17
+ * Last Edited On: 2017 Nov 23
  * 
  */
 
@@ -20,22 +20,6 @@ public class Enemy : NPCharacter
     {
         base.Awake();
         Chartype = CharType.ENEMY; // Set self as enemy
-
-        if(Equipped is Weapon) // Does enemy have weapon?
-        {
-            Weapon p = Equipped as Weapon; // Get weapon detail
-
-            if (Equipped is RangedWeapon) // Is it ranged weapon?
-            {
-                isRanged = true; // Set range flag to true
-                DetectionRange = p.Range; // Set detection Range as weapon's range
-                AttackRange = p.Range; // Set attack range as weapon's range as well
-            }
-            else // Otherwise detection range needs to be manually changed
-            {
-                AttackRange = p.Range;
-            }
-        }
     }
 
     public override void FixedUpdate()
@@ -48,16 +32,41 @@ public class Enemy : NPCharacter
         base.Update();
     }
 
-    /* Functions */
-    public override void Attack(Character target)
+    public override void OnTriggerStay2D(Collider2D collision)
     {
-        // Attack only if target is not enemy
-        if(target.Chartype != CharType.NONE && target.Chartype != CharType.ENEMY)
-            base.Attack(target);
+        if(!IsTriggered && InDetectionRange(collision.transform))
+        {
+            // Player First, then NPC
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                IsTriggered = true;
+                FollowTarget = collision.gameObject;
+                AttackTarget = collision.gameObject;
+            }
+            else if (collision.gameObject.tag.Equals("Neutral"))
+            {
+                isTriggered = true;
+                FollowTarget = collision.gameObject;
+                AttackTarget = collision.gameObject;
+            }
+        }
     }
 
-    public override void Jump()
+    public override void OnTriggerExit2D(Collider2D collision)
     {
-        base.Jump();
+        if (collision.gameObject.tag.Equals("Neutral"))
+        {
+            IsTriggered = false;
+            FollowTarget = null;
+            AttackTarget = null;
+        }
+        else if (collision.gameObject.tag.Equals("Player"))
+        {
+            IsTriggered = false;
+            FollowTarget = null;
+            AttackTarget = null;
+        }
     }
+
+    /* Functions */
 }

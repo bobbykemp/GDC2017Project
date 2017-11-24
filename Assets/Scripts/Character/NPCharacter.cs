@@ -20,18 +20,19 @@ public class NPCharacter : Character
     [Range(0, 0.9999f)]
     public float attackDelay = 0;
 
+    public float detectionRange = 1; // How far can emeny detect something?
+    public float attackRange = 1; // How far can enemy attack? (Override value from weapon however)
+
     public bool isTriggered = false;
     public bool isRanged = false;
 
     /* Private Variables */
-    private float rng_detection = 1; // How far can emeny detect something?
-    private float rng_atk = 1; // How far can enemy attack? (Override value from weapon however)
     private float attackSpeed = 0;
     private float nextAttack = 0;
 
     private bool attacked = false;
 
-    private GameObject followTarget, attackTarget;
+    public GameObject followTarget, attackTarget;
 
     /* Getter and Setter */
     public float FollowDist
@@ -42,14 +43,14 @@ public class NPCharacter : Character
 
     public float DetectionRange
     {
-        get { return rng_detection; }
-        set { rng_detection = value; }
+        get { return detectionRange; }
+        set { detectionRange = value; }
     }
 
     public float AttackRange
     {
-        get { return rng_atk; }
-        set { rng_atk = value; }
+        get { return attackRange; }
+        set { attackRange = value; }
     }
 
     public float AttackSpeed
@@ -86,6 +87,9 @@ public class NPCharacter : Character
     public override void Awake()
     {
         base.Awake(); // Since we are overcasting Character Awake function, need to call it.
+
+        GetComponent<CircleCollider2D>().radius = DetectionRange; // Set detection range
+
         Chartype = CharType.NPC; // Need to make sure our NPC is N.P.C!
 
         if (Equipped is Weapon) // Does NPC have weapon?
@@ -105,6 +109,12 @@ public class NPCharacter : Character
 
             AttackSpeed = attackDelay;
         }
+    }
+
+    public override void FixedUpdate()
+    {
+        if (IsTriggered) // Move only if we are triggered
+            Move();
     }
 
     public override void Update()
@@ -127,32 +137,23 @@ public class NPCharacter : Character
         }
     }
 
-    public override void FixedUpdate()
-    {
-        if(IsTriggered) // Move only if we are triggered
-            Move();
-    }
-
     public override void OnTriggerStay2D(Collider2D collision)
     {
-        // Enemy First, then player
-        if(collision.gameObject.tag.Equals("Enemy"))
+        if(!IsTriggered && InDetectionRange(collision.transform)) // Check if whatever colliding is within detection range
         {
-            if(!IsTriggered)
+            if (collision.gameObject.tag.Equals("Enemy"))
             {
                 IsTriggered = true;
                 FollowTarget = collision.gameObject;
                 AttackTarget = collision.gameObject;
             }
-        }
-        else if (collision.gameObject.tag.Equals("Player")) // Is it player?
-        {
-            if(!isTriggered)
+            else if (collision.gameObject.tag.Equals("Player")) // Is it player?
             {
                 isTriggered = true;
                 FollowTarget = collision.gameObject;
             }
         }
+        // Enemy First, then player
     }
 
     public override void OnTriggerExit2D(Collider2D collision)
@@ -196,10 +197,17 @@ public class NPCharacter : Character
         }
     }
 
+    protected bool InDetectionRange(Transform target)
+    {
+        Vector2 dist = target.position - this.transform.position;
+
+        if (dist.magnitude <= DetectionRange) return true;
+        else return false;
+    }
+
     public override void Attack(Character target)
     {
-        if(target.Chartype == CharType.ENEMY) // Attack if and only if target character is enemy
-            base.Attack(target);
+        base.Attack(target);
     }
 
     public override void Jump()
