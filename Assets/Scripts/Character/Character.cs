@@ -26,6 +26,8 @@ public class Character : MonoBehaviour
 
     public AudioClip[] soundclips; // To play sounds for character
 
+    public Item curr_item = null; // Character's weapon
+
     public float health = 1; //  Place holder value
     public float horizontalSpeed = 1; //  Place holder value
     public float verticalSpeed = 1; //  For jump; it is named as speed but it really is a force; just keeping the naming streamlined.
@@ -41,8 +43,6 @@ public class Character : MonoBehaviour
     private List<Status> status_affect = new List<Status>(); //  For any status character is affected
 
     private CharType chartype = CharType.NONE; //  Character type
-
-    private Item curr_item = null; // Character's weapon
 
     private bool inAir = false; // For ground check
 
@@ -137,6 +137,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public virtual void Start() { }
+    public virtual void FixedUpdate() { }
+    public virtual void Update() { }
+    public virtual void LateUpdate() { }
+
     public virtual void OnCollisionEnter2D(Collision2D collision) { }
     public virtual void OnCollisionStay2D(Collision2D collision) { }
     public virtual void OnCollisionExit2D(Collision2D collision) { }
@@ -174,6 +179,7 @@ public class Character : MonoBehaviour
         if (attacker.Equipped != null) // Is this filthy attacker having weapon?
             if (attacker.Equipped is Weapon) // Yes
             {
+                Debug.Log("Attacker: " + attacker.Name + " Defender: " + this.Name);
                 Weapon p = attacker.Equipped as Weapon; // Get Weapon
                 float dmg = p.Value; // Get Weapon's damage
 
@@ -194,10 +200,10 @@ public class Character : MonoBehaviour
                         AddAffectStatus(p.Effect); // Then add new affect status to character.
                 }
 
-                if (audiosource.isPlaying) audiosource.Stop(); // Make sure audio source is not playing
+                //if (audiosource.isPlaying) audiosource.Stop(); // Make sure audio source is not playing
 
-                audiosource.clip = soundclips[(int)DefaultCharSound.DAMAGE];
-                audiosource.Play(); // Play damage sound
+                //audiosource.clip = soundclips[(int)DefaultCharSound.DAMAGE];
+                //audiosource.Play(); // Play damage sound
             }
     }
 
@@ -209,10 +215,10 @@ public class Character : MonoBehaviour
 
             // Play attack animation
 
-            if (audiosource.isPlaying) audiosource.Stop(); // Make sure audio source is not playing
+            //if (audiosource.isPlaying) audiosource.Stop(); // Make sure audio source is not playing
 
-            audiosource.clip = soundclips[(int)DefaultCharSound.ATTACK];
-            audiosource.Play(); // Play attack sound
+            //audiosource.clip = soundclips[(int)DefaultCharSound.ATTACK];
+            //audiosource.Play(); // Play attack sound
         }
     }
 

@@ -42,14 +42,14 @@ public class Player : Character
         Chartype = CharType.PLAYER;
     }
 
-    public void Update()
+    public override void Update()
     {
         // If player is taking cover, leave cover first
         // If cover is near, take cover
         // If slot number is changed, change item
     }
 
-    public void FixedUpdate()
+    public override void FixedUpdate()
     {
         Move(); // Is player moving?
         DoubleJump(); // Is player jumping?

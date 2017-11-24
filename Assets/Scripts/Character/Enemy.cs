@@ -15,26 +15,6 @@ using UnityEngine;
 [AddComponentMenu("GDC/Character/Enemy")]
 public class Enemy : NPCharacter
 {
-    /* Public Variables */
-    public bool isRanged = false;
-    
-    /* Private Variables */
-    private float rng_detection = 1; // How far can emeny detect something?
-    private float rng_atk = 1; // How far can enemy attack? (Override value from weapon however)
-
-    /* Getter and Setters */
-    public float DetectionRange
-    {
-        get { return rng_detection; }
-        set { rng_detection = value; }
-    }
-
-    public float AttackRange
-    {
-        get { return rng_atk; }
-        set { rng_atk = value; }
-    }
-
     /* Unity Functions */
     public override void Awake()
     {
@@ -58,14 +38,14 @@ public class Enemy : NPCharacter
         }
     }
 
-    public override void Update()
-    {
-        base.Update();
-    }
-
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 
     /* Functions */

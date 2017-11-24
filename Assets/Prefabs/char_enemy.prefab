@@ -139,11 +139,14 @@ MonoBehaviour:
   char_animator: {fileID: 0}
   body: {fileID: 0}
   soundclips: []
+  curr_item: {fileID: 114590260581301044, guid: 1ac2166e995cd3848ba4a4856e463f94,
+    type: 2}
   health: 1
   horizontalSpeed: 1
   verticalSpeed: 1
   charName: Test_Enemy
   followDistance: 1
+  attackDelay: 0
   isTriggered: 0
   isRanged: 0
 --- !u!212 &212695520577063422
