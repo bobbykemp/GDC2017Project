@@ -10,6 +10,7 @@
 4. General Guideline for Scripts
 5. Naming Convention
 6. Setup Image for Prefabs
+7. Project Board
 ```
 
 ## 1. General Guideline for Repository
@@ -180,3 +181,11 @@ This will be done at team manager level, however, when sending pull request, it 
 As our prefabs transfer without meta data, it is crucial to have setup image for each prefab made.  
 Simply take a screen shot and put saved image in `Documentations/Setup_Images`.  
 Be sure to name files with prefab name __AT LEAST__ when saving image files.
+
+## 7. Project Board
+
+__Note: Starting November 24th, 2017, all tasks are distributed via Project Board__  
+
+Project board is used to show overview of project and tasks; `TO DO`, `IN WORK`, and `COMPLETED` tags are used to indicate which task is at what state. Team member is responsible to choose which task to work on. It is completely up to team member's job to pick which task to work on. Project board will also have issues for functions if a function have bug. You can click on each task to see details and requirements for each task.
+
+Be sure to notify team manager on which task you will be working on; this will let other team member know which task is being worked and avoid duplicate workload. Once team manager acknowledge your task, your initial will be added to task as tag, then task will change to `IN WORK` state.
