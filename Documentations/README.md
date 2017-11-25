@@ -9,6 +9,7 @@
 3. Pull Request Rejection
 4. General Guideline for Scripts
 5. Naming Convention
+6. Setup Image for Prefabs
 ```
 
 ## 1. General Guideline for Repository
@@ -168,3 +169,9 @@ bgm1.ogg
 
 As more and more file for different part of game is added, each file will have more subparts.  
 This will be done at team manager level, however, when sending pull request, it is up to team member's to have minimum naming convention.
+
+## 6. Setup Image for Prefabs
+
+As our prefabs transfer without meta data, it is crucial to have setup image for each prefab made.  
+Simply take a screen shot and put saved image in `Documentation/Setup_Images`.  
+Be sure to name files with prefab name __AT LEAST__ when saving image files as well.
