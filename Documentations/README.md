@@ -22,8 +22,10 @@ Unless otherwise notified in the group message, general repository update proces
 2. Team manager will SEND pull request from main repository to each member's forked repository
 3. Team member will pull the request, updating their repository to main repository.
 4. Team member will work on their task until THURSDAY.
-5. Before THURSDAY, 11:59PM, each team member will pull main repository to their repository to sync each team member's repository, in case main repository was changed over the week.
-6. Before FRIDAY, 12:00AM, ALL team member will send pull request to main repository, regardless of completion of their task.
+5. Before THURSDAY, 11:59PM, each team member will pull main repository to their repository  
+to sync each team member's repository, in case main repository was changed over the week.
+6. Before FRIDAY, 12:00AM, ALL team member will send pull request to main repository,  
+regardless of completion of their task.
 7. Team manager will pull each request, getting it ready for discussion on Friday.
 8. After meeting, team manager will merge and organize files.
 9. Repeat from 1.
@@ -46,7 +48,8 @@ To revert back to last version;
 2. Click on Closed pull request
 3. You will see list of closed pull request you accepted. Click on last version you pulled.
 4. Scroll to bottom of pull request page, and you will see small Revert button.
-5. Click on Revert button. This will take you to create new pull request page. Revert cannot be done unless reverted version is pulled.
+5. Click on Revert button. This will take you to create new pull request page.  
+Revert cannot be done unless reverted version is pulled.
 ```
 You may also revert back to previous commit;
 ```
@@ -161,10 +164,12 @@ spear1_weapon_item.prefab
 (Invalid. Naming is ascending order; valid file name would be item_weapon_spear1.prefab)
 
 sprite_box.png
-(Invalid. Box is subpart of Sprite, but does not have its immediate parent; valid file name would be sprite_item_box.png)
+(Invalid. Box is subpart of Sprite, but does not have its immediate parent;  
+valid file name would be sprite_item_box.png)
 
 bgm1.ogg
-(Invalid. Even though file is under sound, if its subpart of bgm, bgm must be specified; valid file name would be bgm_bgm1.ogg)
+(Invalid. Even though file is under sound, if its subpart of bgm, bgm must be specified;  
+valid file name would be bgm_bgm1.ogg)
 ```
 
 As more and more file for different part of game is added, each file will have more subparts.  
