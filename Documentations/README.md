@@ -173,5 +173,5 @@ This will be done at team manager level, however, when sending pull request, it 
 ## 6. Setup Image for Prefabs
 
 As our prefabs transfer without meta data, it is crucial to have setup image for each prefab made.  
-Simply take a screen shot and put saved image in `Documentation/Setup_Images`.  
-Be sure to name files with prefab name __AT LEAST__ when saving image files as well.
+Simply take a screen shot and put saved image in `Documentations/Setup_Images`.  
+Be sure to name files with prefab name __AT LEAST__ when saving image files.
