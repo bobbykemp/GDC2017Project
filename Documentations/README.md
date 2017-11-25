@@ -188,4 +188,8 @@ __Note: Starting November 24th, 2017, all tasks are distributed via Project Boar
 
 Project board is used to show overview of project and tasks; `TO DO`, `IN WORK`, and `COMPLETED` tags are used to indicate which task is at what state. Team member is responsible to choose which task to work on. It is completely up to team member's job to pick which task to work on. Project board will also have issues for functions if a function have bug. You can click on each task to see details and requirements for each task.
 
-Be sure to notify team manager on which task you will be working on; this will let other team member know which task is being worked and avoid duplicate workload. Once team manager acknowledge your task, your initial will be added to task as tag, then task will change to `IN WORK` state.
+Be sure to notify team manager on which task you will be working on; this will let other team member know which task is being worked and avoid duplicate workload. Once team manager acknowledge your task, your initial will be added to task as tag, then task will change to `IN WORK` state.  
+
+Once team manager acknowledge your task is completed, task will be marked as `COMPLETED` and will be marked closed. If any bug is found later, it will be added as new task on project board, with `Bug` tag.
+
+
