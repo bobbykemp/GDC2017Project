@@ -11,6 +11,7 @@
 5. Naming Convention
 6. Setup Image for Prefabs
 7. Project Board
+8. Milestone
 ```
 
 ## 1. General Guideline for Repository
@@ -193,3 +194,11 @@ Be sure to notify team manager on which task you will be working on; this will l
 Once team manager acknowledge your task is completed, task will be marked as `COMPLETED` and will be marked closed. If any bug is found later, it will be added as new task on project board, with `Bug` tag.
 
 To identify which task is still open, check if task card has green exclamation point on it. If task card has red exclamation point with checkmark, it meas that task is finished and sent to closed task. Any task can be opened again if the task was incomplete. So be sure to check project board often to see which task is still open.
+
+## 8. Milestone
+
+__Note: Starting November 24th, 2017, all tasks are priortized via Milestones__
+
+Milestone is used to show overview of project completion and priority of tasks. Milestone will show overall completion with percentage and has tasks priortized in descending order. Which means tasks on top of the Milestone is number one priority in overall project. Priority list is not mendatory; it is suggestion.
+
+If team member picks a task that is not on top of list, selected task will be move to top of the Milestone. Completed task will be removed from Milestone list, and will be moved to completed list.
