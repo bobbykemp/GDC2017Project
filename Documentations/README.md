@@ -192,4 +192,4 @@ Be sure to notify team manager on which task you will be working on; this will l
 
 Once team manager acknowledge your task is completed, task will be marked as `COMPLETED` and will be marked closed. If any bug is found later, it will be added as new task on project board, with `Bug` tag.
 
-
+To identify which task is still open, check if task card has green exclamation point on it. If task card has red exclamation point with checkmark, it meas that task is finished and sent to closed task. Any task can be opened again if the task was incomplete. So be sure to check project board often to see which task is still open.
