@@ -174,7 +174,7 @@ valid file name would be bgm_bgm1.ogg)
 ```
 
 As more and more file for different part of game is added, each file will have more subparts.  
-This will be done at team manager level, however, when sending pull request, it is up to team member's to have minimum naming convention.
+This will be done at team manager level; however, when sending pull request, it is up to team members to have minimum naming convention.
 
 ## 6. Setup Image for Prefabs
 
