@@ -12,6 +12,7 @@
 6. Setup Image for Prefabs
 7. Project Board
 8. Milestone
+9. Script Design Guideline
 ```
 
 ## 1. General Guideline for Repository
@@ -202,3 +203,19 @@ __Note: Starting November 24th, 2017, all tasks are priortized via Milestones__
 Milestone is used to show overview of project completion and priority of tasks. Milestone will show overall completion with percentage and has tasks priortized in descending order. Which means tasks on top of the Milestone is number one priority in overall project. Priority list is not mendatory; it is suggestion.
 
 If team member picks a task that is not on top of list, selected task will be move to top of the Milestone. Completed task will be removed from Milestone list, and will be moved to completed list.
+
+## 9. Script Design Guidline
+
+Whenever writing a script, be sure to write a script such that level design team has ease-of-access to vital controls. That is, setting up positions, destructible, speed, delay, weapon setting, etc.. Level design team should not be writing scripts, unless otherwise it is required for exclusive game objects. To give an example, when writing script for moving platform, after completing the script, following settings should be accessible for level design team;
+```
+1. Starting position
+2. Surface condition
+3. Platform delay
+4. Horizontal Speed
+5. Vertical Speed
+6. Enable/disable horizontal movement
+7. Enable/disable vertical movement
+8. Mulitple vector position for multi-positional platform
+```
+
+Level design may ask to add/remove certain features, but until level design starts working on level consturction, think of all possible features needed for single script.
