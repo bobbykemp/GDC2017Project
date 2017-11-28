@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 23
+ * Last Edited On: 2017 Nov 27
  * 
  */
 
@@ -61,18 +61,17 @@ public class Player : Character
 
     public override void OnCollisionStay2D(Collision2D collision)
     {
+        base.OnCollisionStay2D(collision);
+
         if (collision.collider.gameObject.tag.Equals("Ground"))
         {
-            InAir = false;
             DoubleJumped = false;
         }
     }
 
     public override void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag.Equals("Ground"))
-            if (!InAir)
-                InAir = true;
+        base.OnCollisionExit2D(collision);
     }
 
     /* Functions */

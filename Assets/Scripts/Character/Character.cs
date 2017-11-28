@@ -8,7 +8,7 @@ using UnityEngine;
  * Created By: Charlie Shin
  * Created On: 2017 Nov 10
  * Last Edited By: Charlie Shin
- * Last Edited On: 2017 Nov 23
+ * Last Edited On: 2017 Nov 27
  * 
  */
 
@@ -143,8 +143,30 @@ public class Character : MonoBehaviour
     public virtual void LateUpdate() { }
 
     public virtual void OnCollisionEnter2D(Collision2D collision) { }
-    public virtual void OnCollisionStay2D(Collision2D collision) { }
-    public virtual void OnCollisionExit2D(Collision2D collision) { }
+    public virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            InAir = false;
+        }
+        else if(collision.gameObject.tag.Equals("KinPlatform"))
+        {
+            InAir = false;
+        }
+    }
+    public virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
+            if (!InAir)
+                InAir = true;
+        }
+        else if (collision.gameObject.tag.Equals("KinPlatform"))
+        {
+            if (!InAir)
+                InAir = true;
+        }
+    }
     public virtual void OnTriggerEnter2D(Collider2D collision) { }
     public virtual void OnTriggerStay2D(Collider2D collision) { }
     public virtual void OnTriggerExit2D(Collider2D collision) { }
